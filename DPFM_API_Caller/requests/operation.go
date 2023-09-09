@@ -53,10 +53,10 @@ type Operation struct {
 	StandardDeliveryDurationUnit             *string  `json:"StandardDeliveryDurationUnit"`
 	StandardOperationScrapPercent            *float32 `json:"StandardOperationScrapPercent"`
 	CostElement                              *string  `json:"CostElement"`
-	ValidityStart                            *string  `json:"ValidityStart"`
-	ValidityEnd                              *string  `json:"ValidityEnd"`
-	Creation                                 string   `json:"Creation"`
-	LastChange                               string   `json:"LastChange"`
+	ValidityStartDate                        *string  `json:"ValidityStartDate"`
+	ValidityEndDate                          *string  `json:"ValidityEndDate"`
+	CreationDate                             string   `json:"CreationDate"`
+	LastChangeDate                           string   `json:"LastChangeDate"`
 	IsCancelled                              *bool    `json:"IsCancelled"`
 	IsMarkedForDeletion                      *bool    `json:"IsMarkedForDeletion"`
 }

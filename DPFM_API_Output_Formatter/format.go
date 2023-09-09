@@ -5,51 +5,6 @@ import (
 	"database/sql"
 	"fmt"
 )
-func ConvertToComponentComposition(rows *sql.Rows) (*[]ComponentComposition, error) {
-	defer rows.Close()
-	componentComposition := make([]ComponentComposition, 0)
-
-	i := 0
-	for rows.Next() {
-		i++
-		pm := &requests.ComponentComposition{}
-
-		err := rows.Scan(
-			&pm.InspectionLot,
-			&pm.ComponentCompositionType,
-			&pm.ComponentCompositionUperLimitInPercent,
-			&pm.ComponentCompositionLowerLimitInPercent,
-			&pm.ComponentCompositionStandardValueInPercent,
-			&pm.Creationstring,
-			&pm.LastChangestring,
-			&pm.IsCancelled,
-			&pm.IsMarkedForDeletion,
-		)
-		if err != nil {
-			fmt.Printf("err = %+v \n", err)
-			return &componentComposition, err
-		}
-
-		data := pm
-		componentComposition = append(ComponentComposition, ComponentComposition{
-			InspectionLot:                              data.InspectionLot,
-			ComponentCompositionType:                   data.ComponentCompositionType,
-			ComponentCompositionUperLimitInPercent:     data.ComponentCompositionUperLimitInPercent,
-			ComponentCompositionLowerLimitInPercent:    data.ComponentCompositionLowerLimitInPercent,
-			ComponentCompositionStandardValueInPercent: data.ComponentCompositionStandardValueInPercent,
-			Creationstring:                             data.Creationstring,
-			LastChangestring:                           data.LastChangestring,
-			IsCancelled:                                data.IsCancelled,
-			IsMarkedForDeletion:                        data.IsMarkedForDeletion,
-		})
-	}
-	if i == 0 {
-		fmt.Printf("DBに対象のレコードが存在しません。")
-		return &componentComposition, nil
-	}
-
-	return &componentComposition, nil
-}
 func ConvertToHeader(rows *sql.Rows) (*[]Header, error) {
 	defer rows.Close()
 	header := make([]Header, 0)
@@ -106,48 +61,138 @@ func ConvertToHeader(rows *sql.Rows) (*[]Header, error) {
 	return &header, nil
 }
 
-func ConvertToHeaderDoc(rows *sql.Rows) (*[]HeaderDoc, error) {
+func ConvertToSpecGeneral(rows *sql.Rows) (*[]SpecGeneral, error) {
 	defer rows.Close()
-	headerDoc := make([]HeaderDoc, 0)
+	specGeneral := make([]SpecGeneral, 0)
 
 	i := 0
 	for rows.Next() {
 		i++
-		pm := &requests.HeaderDoc{}
+		pm := &requests.SpecGeneral{}
 
 		err := rows.Scan(
 			&pm.InspectionLot,
-			&pm.DocType,
-			&pm.DocVersionID,
-			&pm.DocID,
-			&pm.FileExtension,
-			&pm.FileName,
-			&pm.FilePath,
-			&pm.DocIssuerBusinessPartner,
+			&pm.HeatNumber,
+			&pm.CreationDate,
+			&pm.LastChangeDate,
+			&pm.IsCancelled,
+			&pm.IsMarkedForDeletion,
 		)
 		if err != nil {
 			fmt.Printf("err = %+v \n", err)
-			return &headerDoc, err
+			return &specGeneral, err
 		}
 
 		data := pm
-		headerDoc = append(headerDoc, HeaderDoc{
-			InspectionLot:            data.InspectionLot,
-			DocType:                  data.DocType,
-			DocVersionID:             data.DocVersionID,
-			DocID:                    data.DocID,
-			FileExtension:            data.FileExtension,
-			FileName:                 data.FileName,
-			FilePath:                 data.FilePath,
-			DocIssuerBusinessPartner: data.DocIssuerBusinessPartner,
+		specGeneral = append(specGeneral, SpecGeneral{
+			InspectionLot:       data.InspectionLot,
+			HeatNumber:          data.HeatNumber,
+			CreationDate:        data.CreationDate,
+			LastChangeDate:      data.LastChangeDate,
+			IsCancelled:         data.IsCancelled,
+			IsMarkedForDeletion: data.IsMarkedForDeletion,
 		})
 	}
 	if i == 0 {
 		fmt.Printf("DBに対象のレコードが存在しません。")
-		return &headerDoc, nil
+		return &specGeneral, nil
 	}
 
-	return &headerDoc, nil
+	return &specGeneral, nil
+}
+
+func ConvertToSpecDetail(rows *sql.Rows) (*[]SpecDetail, error) {
+	defer rows.Close()
+	specDetail := make([]SpecDetail, 0)
+
+	i := 0
+	for rows.Next() {
+		i++
+		pm := &requests.SpecDetail{}
+
+		err := rows.Scan(
+			&pm.InspectionLot,
+			&pm.SpecType,
+			&pm.UpperLimitValue,
+			&pm.LowerLimitValue,
+			&pm.StandardValue,
+			&pm.SpecTypeUnit,
+			&pm.CreationDate,
+			&pm.LastChangeDate,
+			&pm.IsCancelled,
+			&pm.IsMarkedForDeletion,
+		)
+		if err != nil {
+			fmt.Printf("err = %+v \n", err)
+			return &specDetail, err
+		}
+
+		data := pm
+		specDetail = append(specDetail, SpecDetail{
+			InspectionLot:       data.InspectionLot,
+			SpecType:            data.SpecType,
+			UpperLimitValue:     data.UpperLimitValue,
+			LowerLimitValue:     data.LowerLimitValue,
+			StandardValue:       data.StandardValue,
+			SpecTypeUnit:        data.SpecTypeUnit,
+			CreationDate:        data.CreationDate,
+			LastChangeDate:      data.LastChangeDate,
+			IsCancelled:         data.IsCancelled,
+			IsMarkedForDeletion: data.IsMarkedForDeletion,
+		})
+	}
+	if i == 0 {
+		fmt.Printf("DBに対象のレコードが存在しません。")
+		return &specDetail, nil
+	}
+
+	return &specDetail, nil
+}
+
+func ConvertToComponentComposition(rows *sql.Rows) (*[]ComponentComposition, error) {
+	defer rows.Close()
+	componentComposition := make([]ComponentComposition, 0)
+
+	i := 0
+	for rows.Next() {
+		i++
+		pm := &requests.ComponentComposition{}
+
+		err := rows.Scan(
+			&pm.InspectionLot,
+			&pm.ComponentCompositionType,
+			&pm.ComponentCompositionUperLimitInPercent,
+			&pm.ComponentCompositionLowerLimitInPercent,
+			&pm.ComponentCompositionStandardValueInPercent,
+			&pm.CreationDate,
+			&pm.LastChangeDate,
+			&pm.IsCancelled,
+			&pm.IsMarkedForDeletion,
+		)
+		if err != nil {
+			fmt.Printf("err = %+v \n", err)
+			return &componentComposition, err
+		}
+
+		data := pm
+		componentComposition = append(componentComposition, ComponentComposition{
+			InspectionLot:                              data.InspectionLot,
+			ComponentCompositionType:                   data.ComponentCompositionType,
+			ComponentCompositionUperLimitInPercent:     data.ComponentCompositionUperLimitInPercent,
+			ComponentCompositionLowerLimitInPercent:    data.ComponentCompositionLowerLimitInPercent,
+			ComponentCompositionStandardValueInPercent: data.ComponentCompositionStandardValueInPercent,
+			CreationDate:                             	data.CreationDate,
+			LastChangeDate:                           	data.LastChangeDate,
+			IsCancelled:                                data.IsCancelled,
+			IsMarkedForDeletion:                        data.IsMarkedForDeletion,
+		})
+	}
+	if i == 0 {
+		fmt.Printf("DBに対象のレコードが存在しません。")
+		return &componentComposition, nil
+	}
+
+	return &componentComposition, nil
 }
 
 func ConvertToInspection(rows *sql.Rows) (*[]Inspection, error) {
@@ -171,6 +216,7 @@ func ConvertToInspection(rows *sql.Rows) (*[]Inspection, error) {
 			&pm.InspectionLotInspectionText,
 			&pm.CreationDate,
 			&pm.LastChangeDate,
+			&pm.IsCancelled,
 			&pm.IsMarkedForDeletion,
 		)
 		if err != nil {
@@ -191,6 +237,7 @@ func ConvertToInspection(rows *sql.Rows) (*[]Inspection, error) {
 			InspectionLotInspectionText:              data.InspectionLotInspectionText,
 			CreationDate:                             data.CreationDate,
 			LastChangeDate:                           data.LastChangeDate,
+			IsCancelled:                      		  data.IsCancelled,
 			IsMarkedForDeletion:                      data.IsMarkedForDeletion,
 		})
 	}
@@ -201,9 +248,10 @@ func ConvertToInspection(rows *sql.Rows) (*[]Inspection, error) {
 
 	return &inspection, nil
 }
+
 func ConvertToOperation(rows *sql.Rows) (*[]Operation, error) {
 	defer rows.Close()
-	Operation := make([]Operation, 0)
+	operation := make([]Operation, 0)
 
 	i := 0
 	for rows.Next() {
@@ -343,91 +391,4 @@ func ConvertToOperation(rows *sql.Rows) (*[]Operation, error) {
 	}
 
 	return &operation, nil
-}
-func ConvertToSpecDetail(rows *sql.Rows) (*[]SpecDetail, error) {
-	defer rows.Close()
-	specDetail := make([]SpecDetail, 0)
-
-	i := 0
-	for rows.Next() {
-		i++
-		pm := &requests.SpecDetail{}
-
-		err := rows.Scan(
-			&pm.InspectionLot,
-			&pm.SpecType,
-			&pm.UpperLimitValue,
-			&pm.LowerLimitValue,
-			&pm.StandardValue,
-			&pm.SpecTypeUnit,
-			&pm.CreationDate,
-			&pm.LastChangeDate,
-			&pm.IsCancelled,
-			&pm.IsMarkedForDeletion,
-		)
-		if err != nil {
-			fmt.Printf("err = %+v \n", err)
-			return &specDetail, err
-		}
-
-		data := pm
-		specDetail = append(specDetail, SpecDetail{
-			InspectionLot:       data.InspectionLot,
-			SpecType:            data.SpecType,
-			UpperLimitValue:     data.UpperLimitValue,
-			LowerLimitValue:     data.LowerLimitValue,
-			StandardValue:       data.StandardValue,
-			SpecTypeUnit:        data.SpecTypeUnit,
-			CreationDate:        data.CreationDate,
-			LastChangeDate:      data.LastChangeDate,
-			IsCancelled:         data.IsCancelled,
-			IsMarkedForDeletion: data.IsMarkedForDeletion,
-		})
-	}
-	if i == 0 {
-		fmt.Printf("DBに対象のレコードが存在しません。")
-		return &specDetail, nil
-	}
-
-	return &SpecDetail, nil
-}
-
-func ConvertToSpecGeneral(rows *sql.Rows) (*[]SpecGeneral, error) {
-	defer rows.Close()
-	specGeneral := make([]SpecGeneral, 0)
-
-	i := 0
-	for rows.Next() {
-		i++
-		pm := &requests.SpecGeneral{}
-
-		err := rows.Scan(
-			&pm.InspectionLot,
-			&pm.HeatNumber,
-			&pm.CreationDate,
-			&pm.LastChangeDate,
-			&pm.IsCancelled,
-			&pm.IsMarkedForDeletion,
-		)
-		if err != nil {
-			fmt.Printf("err = %+v \n", err)
-			return &specDetail, err
-		}
-
-		data := pm
-		specGeneral = append(specGeneral, SpecGeneral{
-			InspectionLot:       data.InspectionLot,
-			HeatNumber:          data.HeatNumber,
-			CreationDate:        data.CreationDate,
-			LastChangeDate:      data.LastChangeDate,
-			IsCancelled:         data.IsCancelled,
-			IsMarkedForDeletion: data.IsMarkedForDeletion,
-		})
-	}
-	if i == 0 {
-		fmt.Printf("DBに対象のレコードが存在しません。")
-		return &specGeneral, nil
-	}
-
-	return &SpecGeneral, nil
 }

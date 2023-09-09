@@ -63,23 +63,12 @@ type SDC struct {
 	BusinessPartnerID *int     `json:"business_partner"`
 	ServiceLabel      string   `json:"service_label"`
 	APIType           string   `json:"APIType"`
-	Header            Header   `json:"InspectionPlan"`
+	Header            Header   `json:"InspectionLot"`
 	APISchema         string   `json:"api_schema"`
 	Accepter          []string `json:"accepter"`
 	Deleted           bool     `json:"deleted"`
 }
 
-type ComponentComposition struct {
-	InspectionLot								int			`json:InspectionLot`
-	ComponentCompositionType					string		`json:ComponentCompositionType`
-	ComponentCompositionUperLimitInPercent		*float32	`json:ComponentCompositionUperLimitInPercent`
-	ComponentCompositionLowerLimitInPercent		*float32	`json:ComponentCompositionLowerLimitInPercent`
-	ComponentCompositionStandardValueInPercent	*float32	`json:ComponentCompositionStandardValueInPercent`
-	Creationstring								*string		`json:Creationstring`
-	LastChangestring							*string		`json:LastChangestring`
-	IsCancelled 								*int		`json:IsCancelled `
-	IsMarkedForDeletion							*int		`json:IsMarkedForDeletion`
-}
 type Header struct {
 	InspectionLot                  int     `json:"InspectionLot"`
 	InspectionPlan                 *int    `json:"InspectionPlan"`
@@ -95,30 +84,62 @@ type Header struct {
 	LastChangeDate                 *string `json:"LastChangeDate"`
 	IsCancelled                    *bool   `json:"IsCancelled"`
 	IsMarkedForDeletion            *bool   `json:"IsMarkedForDeletion"`
+	SpecGeneral                    []SpecGeneral			`json:"SpecGeneral"`
+	SpecDetail                     []SpecDetail				`json:"SpecDetail"`
+	ComponentComposition		   []ComponentComposition	`json:"ComponentComposition"`
+	Inspection                     []Inspection				`json:"Inspection"`
+	Operation                      []Operation				`json:"Operation"`	
 }
-type HeaderDoc struct {
-	InspectionLot	            int	    `json:InspectionLot`
-    DocType	                    string	`json:DocType`
-    DocVersionID	            int	    `json:DocVersionID`
-    DocID	                    string	`json:DocID`
-    FileExtension	            *string	`json:FileExtension`
-    FileName	                *string	`json:FileName`
-    FilePath	                *string	`json:FilePath`
-    DocIssuerBusinessPartner	*int	`json:DocIssuerBusinessPartner`
+
+type SpecGeneral struct {
+	InspectionLot	    int	    `json:"InspectionLot"`
+    HeatNumber	        string	`json:"HeatNumber"`
+    CreationDate	    *string	`json:"CreationDate"`
+    LastChangeDate	    *string	`json:"LastChangeDate"`
+    IsCancelled	        *bool	`json:"IsCancelled"`
+    IsMarkedForDeletion	*bool	`json:"IsMarkedForDeletion"`
+	SpecDetail          []SpecDetail	`json:"SpecDetail"`
 }
+
+type SpecDetail struct {
+	InspectionLot	        int	    `json:"InspectionLot"`
+    SpecType	            string	`json:"SpecType"`
+    UpperLimitValue	        *float32 `json:"UpperLimitValue"`
+    LowerLimitValue	        *float32 `json:"LowerLimitValue"`
+    StandardValue	        *float32 `json:"StandardValue"`
+    SpecTypeUnit	        *string	`json:"SpecTypeUnit"`
+    CreationDate	        *string	`json:"CreationDate"`
+    LastChangeDate	        *string	`json:"LastChangeDate"`
+    IsCancelled	            *bool	`json:"IsCancelled"`
+    IsMarkedForDeletion	    *bool	`json:"IsMarkedForDeletion"`
+}
+
+type ComponentComposition struct {
+	InspectionLot								int		`json:"InspectionLot"`
+	ComponentCompositionType					string	`json:"ComponentCompositionType"`
+	ComponentCompositionUperLimitInPercent		*float32 `json:"ComponentCompositionUperLimitInPercent"`
+	ComponentCompositionLowerLimitInPercent		*float32 `json:"ComponentCompositionLowerLimitInPercent"`
+	ComponentCompositionStandardValueInPercent	*float32 `json:"ComponentCompositionStandardValueInPercent"`
+	CreationDate								*string	`json:"CreationDate"`
+	LastChangeDate								*string	`json:"LastChangeDate"`
+	IsCancelled 								*bool	`json:"IsCancelled" `
+	IsMarkedForDeletion							*bool	`json:"IsMarkedForDeletion"`
+}
+
 type Inspection struct {
-	InspectionLot	                            int	        `json:InspectionLot`
-    Inspection	                                int	        `json:Inspection`
-    InspectionType                            	*string	    `json:InspectionType`
-    InspectionTypeValueUnit	                    *string	    `json:InspectionTypeValueUnit`
-    InspectionTypePlannedValue	                *float32	`json:InspectionTypePlannedValue`
-    InspectionTypeCertificateType	            *string	    `json:InspectionTypeCertificateType`
-    InspectionTypeCertificateValueInText	    *string	    `json:InspectionTypeCertificateValueInText`
-    InspectionTypeCertificateValueInQuantity	*float32	`json:InspectionTypeCertificateValueInQuantity`
-    InspectionLotInspectionText	                *string	    `json:InspectionLotInspectionText`
-    CreationDate	                            *string	    `json:CreationDate`
-    LastChangeDate	                            *string	    `json:LastChangeDate`
-    IsMarkedForDeletion	                        *int	    `json:IsMarkedForDeletion`
+	InspectionLot	                            int	        `json:"InspectionLot"`
+    Inspection	                                int	        `json:"Inspection"`
+    InspectionType                            	string	    `json:"InspectionType"`
+    InspectionTypeValueUnit	                    *string	    `json:"InspectionTypeValueUnit"`
+    InspectionTypePlannedValue	                *float32	`json:"InspectionTypePlannedValue"`
+    InspectionTypeCertificateType	            *string	    `json:"InspectionTypeCertificateType"`
+    InspectionTypeCertificateValueInText	    *string	    `json:"InspectionTypeCertificateValueInText"`
+    InspectionTypeCertificateValueInQuantity	*float32	`json:"InspectionTypeCertificateValueInQuantity"`
+    InspectionLotInspectionText	                *string	    `json:"InspectionLotInspectionText"`
+    CreationDate	                            *string	    `json:"CreationDate"`
+    LastChangeDate	                            *string	    `json:"LastChangeDate"`
+	IsCancelled                                 *bool       `json:"IsCancelled"`
+    IsMarkedForDeletion	                        *bool	    `json:"IsMarkedForDeletion"`
 }
 
 type Operation struct {
@@ -174,32 +195,10 @@ type Operation struct {
 	StandardDeliveryDurationUnit             *string  `json:"StandardDeliveryDurationUnit"`
 	StandardOperationScrapPercent            *float32 `json:"StandardOperationScrapPercent"`
 	CostElement                              *string  `json:"CostElement"`
-	ValidityStart                            *string  `json:"ValidityStart"`
-	ValidityEnd                              *string  `json:"ValidityEnd"`
-	Creation                                 *string  `json:"Creation"`
-	LastChange                               *string  `json:"LastChange"`
+	ValidityStartDate                        *string  `json:"ValidityStartDate"`
+	ValidityEndDate                          *string  `json:"ValidityEndDate"`
+	CreationDate                             *string  `json:"CreationDate"`
+	LastChangeDate                           *string  `json:"LastChangeDate"`
 	IsCancelled                              *bool    `json:"IsCancelled"`
 	IsMarkedForDeletion                      *bool    `json:"IsMarkedForDeletion"`
 }
-type SpecDetail struct {
-	InspectionLot	        int	    	`json:InspectionLot`
-    SpecType	            string		`json:SpecType`
-    UpperLimitValue	        *float32	`json:UpperLimitValue`
-    LowerLimitValue	        *float32	`json:LowerLimitValue`
-    StandardValue	        *float32	`json:StandardValue`
-    SpecTypeUnit	        *string		`json:SpecTypeUnit`
-    CreationDate	        *string		`json:CreationDate`
-    LastChangeDate	        *string		`json:LastChangeDate`
-    IsCancelled	            *bool		`json:IsCancelled`
-    IsMarkedForDeletion	    *bool		`json:IsMarkedForDeletion`
-}
-
-type SpecGeneral struct {
-	InspectionLot	    int	    `json:InspectionLot`
-    HeatNumber	        *string	`json:HeatNumber`
-    CreationDate	    *string	`json:CreationDate`
-    LastChangeDate	    *string	`json:LastChangeDate`
-    IsCancelled	        *bool	`json:IsCancelled`
-    IsMarkedForDeletion	*bool	`json:IsMarkedForDeletion`
-}
-

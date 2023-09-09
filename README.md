@@ -17,13 +17,12 @@ APIサービス URL: https://xxx.xxx.io/api/API_INSPECTION_LOT_SRV/reads/
 ## 本レポジトリ に 含まれる API名
 data-platform-api-inspection-lot-reads-rmq-kube には、次の API をコールするためのリソースが含まれています。  
 
-* data-platform-inspection-lot-sql-header-data.sql（データ連携基盤 品質検査ロット - ヘッダデータ）
-* data-platform-inspection-lot-sql-header-doc-data.sql（データ連携基盤 品質検査ロット - ヘッダ文書データ）
-* data-platform-inspection-lot-sql-spec-general-data.sql（データ連携基盤 品質検査ロット - スペック一般データ）
-* data-platform-inspection-lot-sql-spec-detail-data.sql（データ連携基盤 品質検査ロット - スペック詳細データ）
-* data-platform-inspection-lot-sql-component-composition-data.sql（データ連携基盤 品質検査ロット - 構成品目構成物質データ）
-* data-platform-inspection-lot-sql-inspection-data.sql（データ連携基盤 品質検査ロット - 品質検査データ）
-* data-platform-inspection-lot-sql-operation-data.sql（データ連携基盤 品質検査ロット - 作業データ）
+* A_Header（品質検査ロット - ヘッダ）
+* A_SpecGeneral（品質検査ロット - スペック一般）
+* A_SpecDetail（品質検査ロット - スペック詳細）
+* A_ComponentComposition（品質検査ロット - 構成物質）
+* A_Inspection（品質検査ロット - 品質検査）
+* A_Operation（品質検査ロット - 作業）
 
 ## API への 値入力条件 の 初期値
 data-platform-api-inspection-lot-reads-rmq-kube において、API への値入力条件の初期値は、入力ファイルレイアウトの種別毎に、次の通りとなっています。  
