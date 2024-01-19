@@ -1,0 +1,78 @@
+{
+  "connection_key": "request",
+  "result": true,
+  "redis_key": "abcdefg",
+  "filepath": "/var/lib/aion/Data/rededge_sdc/abcdef.json",
+  "api_status_code": 200,
+  "runtime_session_id": "boi9ar543dg91ipdnspi099u231280ab0v8af0ew",
+  "business_partner": null,
+  "service_label": "INSPECTION_LOT",
+  "api_type": "reads",
+  "message": {
+    "Header": null,
+    "SpecGeneral": null,
+    "SpecDetail": null,
+    "ComponentComposition": [
+      {
+        "InspectionLot": 1,
+        "ComponentCompositionType": "C",
+        "ComponentCompositionUpperLimitInPercent": 0.35,
+        "ComponentCompositionLowerLimitInPercent": 0,
+        "ComponentCompositionStandardValueInPercent": 0,
+        "CreationDate": "2024-01-02",
+        "CreationTime": "00:00:00",
+        "LastChangeDate": "2024-01-03",
+        "LastChangeTime": "10:00:00",
+        "IsReleased": false,
+        "IsLocked": false,
+        "IsCancelled": null,
+        "IsMarkedForDeletion": null
+      },
+      {
+        "InspectionLot": 1,
+        "ComponentCompositionType": "Mn",
+        "ComponentCompositionUpperLimitInPercent": 1.1,
+        "ComponentCompositionLowerLimitInPercent": 0.4,
+        "ComponentCompositionStandardValueInPercent": 0,
+        "CreationDate": "2024-01-02",
+        "CreationTime": "00:00:00",
+        "LastChangeDate": "2024-01-03",
+        "LastChangeTime": "10:00:00",
+        "IsReleased": false,
+        "IsLocked": false,
+        "IsCancelled": null,
+        "IsMarkedForDeletion": null
+      },
+      {
+        "InspectionLot": 1,
+        "ComponentCompositionType": "Si",
+        "ComponentCompositionUpperLimitInPercent": 0.35,
+        "ComponentCompositionLowerLimitInPercent": 0,
+        "ComponentCompositionStandardValueInPercent": 0,
+        "CreationDate": "2024-01-02",
+        "CreationTime": "00:00:00",
+        "LastChangeDate": "2024-01-03",
+        "LastChangeTime": "10:00:00",
+        "IsReleased": false,
+        "IsLocked": false,
+        "IsCancelled": null,
+        "IsMarkedForDeletion": null
+      }
+    ],
+    "Inspection": null,
+    "Operation": null
+  },
+  "api_schema": "DPFMInspectionLotReads",
+  "accepter": [
+    "ComponentCompositions"
+  ],
+  "deleted": false,
+  "sql_update_result": null,
+  "sql_update_error": "",
+  "subfunc_result": null,
+  "subfunc_error": "",
+  "exconf_result": null,
+  "exconf_error": "",
+  "api_processing_result": true,
+  "api_processing_error": ""
+}

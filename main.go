@@ -111,10 +111,16 @@ func getAccepter(input *dpfm_api_input_reader.SDC) []string {
 	if accepter[0] == "All" {
 		accepter = []string{
 			"Header",
-			"SpecGeneral", "SpecDetail",
+			"SpecGeneral",
+			"SpecGenerals",
+			"SpecDetail",
+			"SpecDetails",
 			"ComponentComposition",
+			"ComponentCompositions",
 			"Inspection",
+			"Inspections",
 			"Operation",
+			"Operations",
 		}
 	}
 	return accepter
